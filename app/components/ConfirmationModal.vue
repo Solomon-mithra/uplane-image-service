@@ -1,14 +1,43 @@
 <template>
-  <Transition name="modal">
-    <div v-if="isOpen" class="modal-backdrop">
-      <div class="modal-content">
-        <h3>{{ title }}</h3>
-        <p>{{ message }}</p>
-        
-        <div class="modal-actions">
-          <button @click="cancel" class="btn-cancel">Cancel</button>
-          <button @click="confirm" class="btn-confirm">Delete</button>
-        </div>
+  <Transition 
+    enter-active-class="transition ease-out duration-300"
+    enter-from-class="opacity-0"
+    enter-to-class="opacity-100"
+    leave-active-class="transition ease-in duration-200"
+    leave-from-class="opacity-100"
+    leave-to-class="opacity-0"
+  >
+    <div v-if="isOpen" class="fixed inset-0 z-[100] flex items-center justify-center p-4">
+      <!-- Backdrop -->
+      <div class="fixed inset-0 bg-gray-900/30 backdrop-blur-sm transition-opacity" @click="cancel"></div>
+
+      <!-- Modal Content -->
+      <div class="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 sm:p-8 transform transition-all scale-100 ring-1 ring-gray-900/5">
+         <div class="text-center">
+           <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-50 mb-4">
+             <svg class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+             </svg>
+           </div>
+           
+           <h3 class="text-lg font-bold text-gray-900 mb-2">{{ title }}</h3>
+           <p class="text-sm text-gray-500 mb-8 leading-relaxed">{{ message }}</p>
+           
+           <div class="flex gap-3 justify-center">
+             <button 
+               @click="cancel" 
+               class="flex-1 px-4 py-2.5 bg-white border border-gray-300 rounded-xl text-sm font-semibold text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-200 transition-colors shadow-sm"
+             >
+               Cancel
+             </button>
+             <button 
+               @click="confirm" 
+               class="flex-1 px-4 py-2.5 bg-red-600 border border-transparent rounded-xl text-sm font-semibold text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors shadow-sm"
+             >
+               Delete
+             </button>
+           </div>
+         </div>
       </div>
     </div>
   </Transition>
@@ -41,92 +70,3 @@ const cancel = () => {
 
 defineExpose({ open });
 </script>
-
-<style scoped>
-.modal-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background: white;
-  border: 1px solid #e5e7eb;
-  padding: 2rem;
-  border-radius: 16px;
-  width: 90%;
-  max-width: 400px;
-  text-align: center;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.25rem;
-  color: #111827;
-  font-weight: 600;
-}
-
-p {
-  color: #6b7280;
-  margin-bottom: 2rem;
-  font-size: 0.95rem;
-  line-height: 1.5;
-}
-
-.modal-actions {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
-
-button {
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-size: 0.9rem;
-}
-
-.btn-cancel {
-  background: white;
-  border: 1px solid #d1d5db;
-  color: #374151;
-}
-
-.btn-cancel:hover {
-  background: #f9fafb;
-  border-color: #9ca3af;
-}
-
-.btn-confirm {
-  background: #ef4444;
-  color: white;
-  border: 1px solid #ef4444;
-}
-
-.btn-confirm:hover {
-  background: #dc2626;
-  border-color: #dc2626;
-}
-
-.modal-enter-active,
-.modal-leave-active {
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.modal-enter-from,
-.modal-leave-to {
-  opacity: 0;
-  transform: scale(0.95);
-}
-</style>
