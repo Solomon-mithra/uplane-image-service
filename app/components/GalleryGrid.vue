@@ -38,8 +38,11 @@
     <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       <div v-for="img in images" :key="img.id" class="group relative bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden">
         
-        <!-- Image Area -->
-        <div class="aspect-[4/3] bg-gray-50 relative flex items-center justify-center overflow-hidden">
+        <!-- Image Area (Clickable) -->
+        <div 
+           class="aspect-[4/3] bg-gray-50 relative flex items-center justify-center overflow-hidden cursor-pointer"
+           @click="openComparison(img)"
+        >
            <img 
              v-if="img.status === 'completed'" 
              :src="getPublicUrl(img.processed_url)" 
@@ -62,6 +65,13 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
               </svg>
            </button>
+           
+           <!-- Hover hint -->
+           <div v-if="img.status === 'completed'" class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+             <div class="bg-black/60 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+               Click to Compare
+             </div>
+           </div>
         </div>
         
         <!-- Details Footer -->
@@ -77,7 +87,7 @@
           <!-- Share Button -->
           <button 
             v-if="img.status === 'completed'" 
-            @click="copyLink(img.processed_url)" 
+            @click.stop="copyLink(img.processed_url)" 
             class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
           >
             Share
@@ -90,12 +100,16 @@
     </div>
 
     <ConfirmationModal ref="confirmModal" />
+    <ComparisonModal ref="comparisonModal" />
   </div>
 </template>
 
 <script setup lang="ts">
 import ConfirmationModal from './ConfirmationModal.vue'; 
+import ComparisonModal from './ComparisonModal.vue';
+
 const confirmModal = ref<InstanceType<typeof ConfirmationModal> | null>(null);
+const comparisonModal = ref<InstanceType<typeof ComparisonModal> | null>(null);
 
 const config = useRuntimeConfig();
 
@@ -120,6 +134,14 @@ onMounted(() => {
 onUnmounted(() => {
   if (pollTimer) clearInterval(pollTimer);
 });
+
+function openComparison(img: any) {
+  if (img.status !== 'completed') return;
+  const originalUrl = getPublicUrl(img.storage_path);
+  const processedUrl = getPublicUrl(img.processed_url);
+  comparisonModal.value?.open(originalUrl, processedUrl);
+}
+
 
 async function copyLink(path: string) {
   const url = getPublicUrl(path);
