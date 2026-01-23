@@ -10,9 +10,9 @@ export default defineNuxtConfig({
     },
     // Private keys
     supabaseServiceKey: process.env.SUPABASE_SERVICE_KEY,
-    cloudinaryCloudName: process.env.NUXT_CLOUDINARY_CLOUD_NAME,
-    cloudinaryApiKey: process.env.NUXT_CLOUDINARY_API_KEY,
-    cloudinaryApiSecret: process.env.NUXT_CLOUDINARY_API_SECRET,
+    cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
+    cloudinaryApiKey: process.env.CLOUDINARY_API_KEY,
+    cloudinaryApiSecret: process.env.CLOUDINARY_API_SECRET,
   },
 
   // Head configuration for Fonts and Meta

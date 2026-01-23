@@ -1,5 +1,9 @@
 {
   "name": "uplane-image-service",
+  "version": "1.0.0",
+  "description": "Production-grade, event-driven image processing platform with AI capabilities.",
+  "author": "ImageTransform Inc.",
+  "license": "MIT",
   "type": "module",
   "private": true,
   "scripts": {

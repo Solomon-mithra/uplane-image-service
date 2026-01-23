@@ -2,6 +2,8 @@
 
 > A professional-grade, event-driven image processing platform built for scale.
 
+live link: https://uplane-image-service.vercel.app
+
 ![Application Preview](/public/image.png)
 
 ## 🚀 Overview
@@ -13,19 +15,20 @@ The frontend features a "Linear-class" design system with a focus on typography,
 ## ✨ Features
 
 - **Robust Processing Pipeline**: Multi-step workflows (Download → Process → Optimization) that survive server restarts.
-- **Background Removal**: Automated subject isolation (Mocked integration point).
-- **Smart Transformations**: High-performance image operations using `sharp`.
+- **Background Removal**: Automated subject isolation via **Cloudinary**.
+- **Smart Transformations**: High-performance image operations using `sharp` (Horizontal Flip).
 - **Real-time UX**: Polling-based status updates without layout shifts.
 - **Enterprise Gallery**: Asset management with secure deletion and easy sharing.
 - **Reliable Storage**: S3-compatible object storage via Supabase.
 
 ## 🛠 Tech Stack
 
-- **Framework**: [Nuxt 4](https://nuxt.com) (Vue 3 + Nitro Server)
+- **Framework**: [Nuxt 4](https://nuxt.com)
 - **Queue System**: [Inngest](https://inngest.com) (Redis-backed Event Bus)
 - **Database**: [Supabase](https://supabase.com) (PostgreSQL + RLS)
+- **Image Processing**: [Cloudinary](https://cloudinary.com) (Background Removal)
 - **Image Engine**: [Sharp](https://sharp.pixelplumbing.com)
-- **Styling**: Scoped CSS Variables (No Tailwind dependency)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com) (v3)
 
 ---
 
@@ -42,9 +45,18 @@ The frontend features a "Linear-class" design system with a focus on typography,
 Rename `.env.example` to `.env` and configure your credentials:
 
 ```bash
-# Supabase Configuration
-SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_SERVICE_KEY=your-service-role-key
+# Supabase
+SUPABASE_URL=your_supabase_url
+SUPABASE_SERVICE_KEY=your_service_role_key
+
+# Inngest (Optional for dev)
+INNGEST_EVENT_KEY=your_inngest_event_key
+INNGEST_SIGNING_KEY=your_inngest_signing_key
+
+# Cloudinary
+CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 ```
 
 > **Note**: For local development, Inngest does not require API keys. Leave the `INNGEST_*` variables empty in `.env`.
