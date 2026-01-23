@@ -5,4 +5,5 @@ import { processImage } from "../inngest/functions";
 export default defineEventHandler(serve({
   client: inngest,
   functions: [processImage],
+  signingKey: process.env.INNGEST_SIGNING_KEY,
 }));
