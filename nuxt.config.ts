@@ -13,6 +13,8 @@ export default defineNuxtConfig({
     cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
     cloudinaryApiKey: process.env.CLOUDINARY_API_KEY,
     cloudinaryApiSecret: process.env.CLOUDINARY_API_SECRET,
+    inngestEventKey: process.env.INNGEST_EVENT_KEY,
+    inngestSigningKey: process.env.INNGEST_SIGNING_KEY,
   },
 
   // Head configuration for Fonts and Meta
