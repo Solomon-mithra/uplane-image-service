@@ -48,7 +48,7 @@
               Remove Image <br> Backgrounds.
             </h1>
             
-            <p class="text-xl text-gray-500 mb-10 leading-relaxed max-w-lg">
+            <p class="text-lg text-gray-500 mb-10 leading-relaxed max-w-lg">
               Upload your photos and let us automatically remove backgrounds and optimize your images in seconds. Professional quality, zero friction.
             </p>
             
@@ -56,10 +56,6 @@
               <button @click="scrollToWorkspace" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-semibold rounded-xl text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5">
                 Start Editing Free
               </button>
-              <div class="flex flex-col text-sm text-gray-500">
-                <span>Value your time?</span>
-                <button @click="openHiringModal" class="font-semibold text-gray-900 hover:underline text-left">See how it works &rarr;</button>
-              </div>
             </div>
           </div>
           
@@ -94,7 +90,7 @@
     
     <footer class="bg-white border-t border-gray-100 mt-24">
       <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
-        <p class="text-sm text-gray-400">&copy; 2024 ImageTransform Inc. Built for enterprise scale.</p>
+        <p class="text-sm text-gray-400">&copy; 2026 ImageTransform Inc. Built for enterprise scale.</p>
       </div>
     </footer>
     
@@ -121,7 +117,3 @@ function openHiringModal() {
 }
 </script>
 
-<style>
-/* Using global CSS only for specific keyframe tweaks not covered by Tailwind config if needed */
-/* Tailwind handles the rest */
-</style>
