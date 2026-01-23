@@ -15,10 +15,14 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
+import { Events } from "../types";
+
+// ... (imports remain)
+
 export const processImage = inngest.createFunction(
   { id: "process-image" },
   { event: "image/submitted" },
-  async ({ event, step }) => {
+  async ({ event, step }: { event: Events["image/submitted"]; step: any }) => {
     console.log("🚀 [Inngest] Function triggered!", event.data.imageId);
     const { imageId, storagePath } = event.data;
 
