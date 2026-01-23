@@ -8,10 +8,12 @@ const supabaseUrl = process.env.SUPABASE_URL!;
 const supabaseKey = process.env.SUPABASE_SERVICE_KEY!;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-export default defineEventHandler(async (event) => {
   // 1. Parse Multipart Form Data
   console.log("🔍 [Debug] Checking Env Vars:");
   console.log("  - process.env.INNGEST_EVENT_KEY present?", !!process.env.INNGEST_EVENT_KEY);
+  if (process.env.INNGEST_EVENT_KEY) {
+      console.log("  - INNGEST_EVENT_KEY prefix:", process.env.INNGEST_EVENT_KEY.substring(0, 3));
+  }
   const config = useRuntimeConfig();
   console.log("  - runtimeConfig.inngestEventKey present?", !!config.inngestEventKey);
 
