@@ -6,7 +6,7 @@
 
 ## 🚀 Overview
 
-ImageTransform is a state-of-the-art service allowing users to upload, process, and manage image assets with enterprise reliability. Built on **Nuxt 4**, it leverages **Inngest** for durable background workflow execution (Background Removal, Smart Cropping) and **Supabase** for secure storage and data persistence.
+ImageTransform is a state-of-the-art service allowing users to upload, process, and manage image assets with enterprise reliability. Built on **Nuxt 4**, it leverages **Inngest** for durable background workflow execution (Background Removal, fliping the image) and **Supabase** for secure storage and data persistence.
 
 The frontend features a "Linear-class" design system with a focus on typography, micro-interactions, and a clean light mode aesthetic.
 

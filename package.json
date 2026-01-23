@@ -10,8 +10,10 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@cloudinary/url-gen": "^1.22.0",
     "@supabase/supabase-js": "^2.91.0",
     "@types/sharp": "^0.31.1",
+    "cloudinary": "^2.9.0",
     "inngest": "^3.49.3",
     "nuxt": "^4.2.2",
     "sharp": "^0.34.5",

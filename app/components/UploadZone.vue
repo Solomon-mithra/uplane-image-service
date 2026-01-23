@@ -91,6 +91,14 @@ async function uploadFile(file: File) {
     setTimeout(() => error.value = null, 4000);
     return;
   }
+
+  // 5MB Limit
+  const MAX_SIZE = 5 * 1024 * 1024;
+  if (file.size > MAX_SIZE) {
+    error.value = "File is too large. Max 5MB.";
+    setTimeout(() => error.value = null, 4000);
+    return;
+  }
   
   isUploading.value = true;
   error.value = null;

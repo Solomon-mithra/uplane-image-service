@@ -17,6 +17,13 @@ export default defineEventHandler(async (event) => {
 
   // Assume single file upload (first field is the file)
   const file = files[0];
+
+  // 5MB Server-Side Check
+  const MAX_SIZE = 5 * 1024 * 1024;
+  if (file.data.length > MAX_SIZE) {
+    throw createError({ statusCode: 413, statusMessage: "File too large. Max 5MB." });
+  }
+
   const filename = file.filename || "upload.png";
   const fileExt = filename.split('.').pop();
   const imageId = uuidv4();
