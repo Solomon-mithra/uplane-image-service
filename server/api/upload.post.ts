@@ -10,6 +10,11 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default defineEventHandler(async (event) => {
   // 1. Parse Multipart Form Data
+  console.log("🔍 [Debug] Checking Env Vars:");
+  console.log("  - process.env.INNGEST_EVENT_KEY present?", !!process.env.INNGEST_EVENT_KEY);
+  const config = useRuntimeConfig();
+  console.log("  - runtimeConfig.inngestEventKey present?", !!config.inngestEventKey);
+
   const files = await readMultipartFormData(event);
   if (!files || files.length === 0) {
     throw createError({ statusCode: 400, statusMessage: "No file uploaded" });
