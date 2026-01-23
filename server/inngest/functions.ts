@@ -57,7 +57,8 @@ export const processImage = inngest.createFunction(
     // Step 3: Fetch Cloudinary Image with Background Removal Effect
     const bgRemovedBuffer = await step.run("fetch-ai-result", async () => {
         const aiUrl = cloudinary.url(imageId, {
-            effect: "background_removal"
+            effect: "background_removal",
+            format: "png"
         });
         
         console.log("🎨 [Inngest] Fetching AI Background Removal from:", aiUrl);
